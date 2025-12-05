@@ -6,6 +6,7 @@
   import Home from './components/Home.tsx'
   import Detail from './components/Detail.tsx'
   import App from './App.tsx'
+import { useEffect } from 'react'
 
 
   let root: Root | null = null;
@@ -67,6 +68,13 @@
 
   function AppRouter(props:MicroAppProps){
 
+    useEffect(()=>{
+      if (props.initialData){
+        console.log('Received intial data:', props.initialData.message);
+      }
+
+    }, [props]);
+
     const router = createBrowserRouter([
     {
       path: "/",
@@ -74,7 +82,7 @@
     },
     {
       path: "/details",
-      element: <Detail />
+      element: <Detail {...props} />
     },
     {
       path: "*",

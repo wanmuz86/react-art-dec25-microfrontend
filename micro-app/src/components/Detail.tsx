@@ -1,9 +1,17 @@
-import React from 'react'
+  import React from 'react'
 
-const Detail:React.FC = () => {
-  return (
-    <div>Detail Page</div>
-  )
-}
+  const Detail:React.FC<MicroAppProps> = (props) => {
+    return (
+      <div>
+        Detail Page
+        {
+        props.initialData &&
+        <p>Message from host: {props.initialData.message}</p>
+      }
+        
+        </div>
+      
+    )
+  }
 
-export default Detail
+  export default Detail
