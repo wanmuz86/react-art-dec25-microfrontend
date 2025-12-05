@@ -29,9 +29,14 @@ createRoot(document.getElementById('root')!).render(
     <RouterProvider router={router}/>,
 )
 
+const handleDataFromMicroApp = (data:any) => {
+  console.log(`Data received from micro app: ${data}`);
+}
+
 // Define the data that's going to be passed to the microapp
 const hostData = {
-  message:'Hello from the HostApp!'
+  message:'Hello from the HostApp!',
+
 }
 
 // 1) Code to process the registration of microapp in the host app
@@ -44,7 +49,10 @@ registerMicroApps([
     // Pass the data from the host app as props to the microapp
     props: {
       // Pass the hostData to the props, key initialData
-      initialData:hostData
+      initialData:hostData,
+      // Define the props that is the callback function to be executed when data received from microapp
+      onDataReceived: handleDataFromMicroApp
+    
     }
   }
 ])

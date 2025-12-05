@@ -14,5 +14,6 @@ interface Window {
 interface MicroAppProps {
   initialData?: {
     message:string
-  }
+  },
+  onDataReceived?:(data:any)=> void
 }
