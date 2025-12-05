@@ -10,3 +10,9 @@ interface Window {
    unmount: () => Promise<void>;
  };
 }
+// Define the props data type for Qiankun
+interface MicroAppProps {
+  initialData?: {
+    message:string
+  }
+}

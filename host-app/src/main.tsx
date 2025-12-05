@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+
 import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
@@ -26,10 +26,13 @@ const router = createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <RouterProvider router={router}/>
-  </StrictMode>,
+    <RouterProvider router={router}/>,
 )
+
+// Define the data that's going to be passed to the microapp
+const hostData = {
+  message:'Hello from the HostApp!'
+}
 
 // 1) Code to process the registration of microapp in the host app
 registerMicroApps([
@@ -37,7 +40,12 @@ registerMicroApps([
     name:'react-app',
     entry:'//localhost:4173/micro-app/',
     container:'#micro-app-container',
-    activeRule:'/app' // everything that starts with app will go to microApp
+    activeRule:'/app', // everything that starts with app will go to microApp
+    // Pass the data from the host app as props to the microapp
+    props: {
+      // Pass the hostData to the props, key initialData
+      initialData:hostData
+    }
   }
 ])
 
