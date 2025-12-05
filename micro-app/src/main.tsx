@@ -2,6 +2,9 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import type { Root } from 'react-dom/client'
 import './index.css'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Home from './components/Home.tsx'
+import Detail from './components/Detail.tsx'
 import App from './App.tsx'
 
 
@@ -12,7 +15,7 @@ function renderApp() {
   root = createRoot(document.getElementById('root')!)
   root.render(
   <StrictMode>
-    <App />
+    <RouterProvider router={router}/>
   </StrictMode>,
 )
 
@@ -45,5 +48,32 @@ if (window.__POWERED_BY_QIANKUN__){
   window['micro-app'] = {bootstrap, mount, unmount}
 }
 else {
-  renderApp() // show it directly
+  renderApp() // show it directly : http://localhost:4173/micro-app/
 }
+
+const getBasename = () => {
+  if (window.__POWERED_BY_QIANKUN__) {
+    return '/app'
+  }
+  else {
+    return '/micro-app'
+  }
+}
+
+/// Create the routes using createBrowserRouter
+const router = createBrowserRouter([
+  {
+    path:"/",
+    element:<Home/>
+  },
+  {
+    path:"/details",
+    element:<Detail/>
+  },
+  {
+    path:"*",
+    element:<App/>
+  }
+], {
+  basename:getBasename() // a function , either /app or /micro-app
+})
