@@ -5,7 +5,8 @@ function App() {
 
   return (
     <div className="App">
-      <h2>This is the Micro app</h2>
+      <h2>404 page</h2>
+      <p>THis is is the not found page from micro app</p>
       
     </div>
   )
